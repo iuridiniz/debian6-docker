@@ -17,3 +17,8 @@ RUN echo 'Acquire::Check-Valid-Until "false";' >> /etc/apt/apt.conf.d/10-no-chec
 # allow unauthenticated packages (keys are invalid now)
 # https://askubuntu.com/a/74389/469295
 RUN echo 'APT::Get::AllowUnauthenticated "true";' >> /etc/apt/apt.conf.d/10-allow-unauthenticated
+
+# update to last packages
+RUN apt-get -y update && \
+    apt-get -y upgrade && \
+    rm -rf /var/lib/apt/lists/*
